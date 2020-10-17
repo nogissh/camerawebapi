@@ -44,8 +44,10 @@ var checkImage = () => {
     var code = jsQR(imageData.data, canvas.width, canvas.height);
 
     if (code) {
+        console.log('success.');
         document.getElementById('result').innerHTML = code.data;
     } else {
+        console.log('failed.');
         setTimeout(() => { checkImage() }, 200)
     }
 }
