@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>リアカメラ</title>
+</head>
+<body>
+<h1>リアカメラ</h1>
+<video id="video" autoplay playsinline></video>
+<p><a href="/camera/front.html">フロントカメラを使う</a></p>
+<script>
+var video = document.getElementById('video');
+
+navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+        facingMode: 'user'
+    }
+})
+.then(function (stream) {
+    video.srcObject = stream;
+})
+.catch(function () {
+    alert('カメラの起動に失敗しました。');
+});
+</script>
+</body>
+</html>

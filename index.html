@@ -5,23 +5,13 @@
 <title>sample</title>
 </head>
 <body>
-<h1>これはビデオです</h1>
-<video id="video" autoplay playsinline></video>
-<script>
-var video = document.getElementById('video');
-
-navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: {
-        facingMode: 'environment'
-    }
-})
-.then(function (stream) {
-    video.srcObject = stream;
-})
-.catch(function () {
-    alert('カメラの起動に失敗しました。');
-});
-</script>
+<ul>
+    <li>
+        <a href="camera/front.html">フロントカメラ</a>
+    </li>
+    <li>
+        <a href="camera/rear.html">リアカメラ</a>
+    </li>
+</ul>
 </body>
 </html>
