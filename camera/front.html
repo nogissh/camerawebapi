@@ -8,6 +8,10 @@
 <h1>フロントカメラ</h1>
 <video id="video" autoplay playsinline></video>
 <p><a href="/camerawebapi/camera/rear.html">リアカメラを使う</a></p>
+<div style="display:none">
+    <canvas id="canvas"></canvas>
+</div>
+<script src="https://raw.githubusercontent.com/cozmo/jsQR/master/dist/jsQR.js"></script>
 <script>
 var video = document.getElementById('video');
 
@@ -23,6 +27,23 @@ navigator.mediaDevices.getUserMedia({
 .catch(function () {
     alert('カメラの起動に失敗しました。');
 });
+
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+var checkImage = () => {
+    ctx.drawImage(vide, 0, 0, canvas.width, canvas.height);
+
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    var code = jsQR(imageData.data, canvas.width, canvas.height);
+
+    if (code) {
+        document.getElementById('result').innerHTML = code.data;
+    } else {
+        setTimeout(() => { checkImage() }, 200)
+    }
+}
 </script>
 </body>
 </html>
