@@ -12,10 +12,9 @@ var video = document.getElementById('video');
 
 navigator.mediaDevices.getUserMedia({
     audio: false,
-    video: true,
-    facingMode: {
-        exact: 'environment',
-    },
+    video: {
+        facingMode: 'environment'
+    }
 })
 .then(function (stream) {
     video.srcObject = stream;
